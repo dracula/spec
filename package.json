@@ -1,0 +1,14 @@
+{
+  "name": "dracula-spec",
+  "version": "0.1.0",
+  "description": "An RFC specification for Dracula theme syntax highlighting",
+  "main": "index.js",
+  "author": "Derek P Sifford <dereksifford@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "spec": "spec-md ./dracula-spec.md > ./spec/dracula-spec.html"
+  },
+  "devDependencies": {
+    "spec-md": "^0.4.8"
+  }
+}
