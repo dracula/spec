@@ -39,7 +39,7 @@ Pink       : #FF79C6
 
 ### ANSI
 
-AnsiBlack          : #4D4D4D
+AnsiBlack          : #21222C
 
 AnsiRed            : #FF5555
 
@@ -53,23 +53,23 @@ AnsiMagenta        : #FF79C6
 
 AnsiCyan           : #8BE9FD
 
-AnsiWhite          : #BFBFBF
+AnsiWhite          : #F8F8F2
 
-AnsiBrightBlack   : #575757
+AnsiBrightBlack   : #6272A4
 
-AnsiBrightRed     : #FF6E67
+AnsiBrightRed     : #FF6E6E
 
-AnsiBrightGreen   : #5AF78E
+AnsiBrightGreen   : #69FF94
 
-AnsiBrightYellow  : #F4F99D
+AnsiBrightYellow  : #FFFFA5
 
-AnsiBrightBlue    : #CAA9FA
+AnsiBrightBlue    : #D6ACFF
 
-AnsiBrightMagenta : #FF92D0
+AnsiBrightMagenta : #FF92DF
 
-AnsiBrightCyan    : #9AEDFE
+AnsiBrightCyan    : #A4FFFF
 
-AnsiBrightWhite   : #F8F8F2
+AnsiBrightWhite   : #FFFFFF
 
 ## Example spec-compliant theme implementation
 
