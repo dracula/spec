@@ -1,21 +1,825 @@
-<!DOCTYPE html><html><!-- Built with spec-md --><head><meta charset="utf-8"><title>Dracula Syntax Highlighting Specification</title><link href="spec.css" rel="stylesheet"><link href="highlight.css" rel="stylesheet"></head><body><header><h1>Dracula Syntax Highlighting Specification</h1><div class="spec-toc"><div class="title">Contents</div><ol><li><a href="#sec-Prelude"><span class="spec-secid">1</span>Prelude</a><input hidden class="toggle" type="checkbox" checked id="_toggle_1" /><label for="_toggle_1"></label><ol><li><a href="#sec-Interpreting-this-specification"><span class="spec-secid">1.1</span>Interpreting this specification</a></li><li><a href="#sec-Color-Palette"><span class="spec-secid">1.2</span>Color Palette</a><input hidden class="toggle" type="checkbox" checked id="_toggle_1.2" /><label for="_toggle_1.2"></label><ol><li><a href="#sec-Standard"><span class="spec-secid">1.2.1</span>Standard</a></li><li><a href="#sec-ANSI"><span class="spec-secid">1.2.2</span>ANSI</a></li></ol></li><li><a href="#sec-Example-spec-compliant-theme-implementation"><span class="spec-secid">1.3</span>Example spec-compliant theme implementation</a></li></ol></li><li><a href="#sec-General"><span class="spec-secid">2</span>General</a><input hidden class="toggle" type="checkbox" checked id="_toggle_2" /><label for="_toggle_2"></label><ol><li><a href="#sec-Diffs"><span class="spec-secid">2.1</span>Diffs</a></li><li><a href="#sec-Markup-Markdown-RST-etc-"><span class="spec-secid">2.2</span>Markup (Markdown, RST, etc.)</a></li></ol></li><li><a href="#sec-Classes"><span class="spec-secid">3</span>Classes</a></li><li><a href="#sec-Comments"><span class="spec-secid">4</span>Comments</a></li><li><a href="#sec-Constants"><span class="spec-secid">5</span>Constants</a></li><li><a href="#sec-Entities"><span class="spec-secid">6</span>Entities</a></li><li><a href="#sec-Functions-Methods"><span class="spec-secid">7</span>Functions/Methods</a></li><li><a href="#sec-Keywords"><span class="spec-secid">8</span>Keywords</a></li><li><a href="#sec-Language-Built-ins"><span class="spec-secid">9</span>Language Built-ins</a></li><li><a href="#sec-Punctuation"><span class="spec-secid">10</span>Punctuation</a></li><li><a href="#sec-Serializable-Configuration-Languages"><span class="spec-secid">11</span>Serializable / Configuration Languages</a></li><li><a href="#sec-Storage"><span class="spec-secid">12</span>Storage</a></li><li><a href="#sec-Strings"><span class="spec-secid">13</span>Strings</a></li><li><a href="#sec-Variables"><span class="spec-secid">14</span>Variables</a></li></ol></div></header><section id="sec-Prelude" secid="1"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Prelude">1</a></span>Prelude</h2><section id="sec-Interpreting-this-specification" secid="1.1"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Interpreting-this-specification">1.1</a></span>Interpreting this specification</h3><p>Language syntaxes and scopes will be referred to in the following manner throughout this document:</p><div class="spec-production" id="ScopeOfInterest"><span class="spec-nt"><a href="#ScopeOfInterest">ScopeOfInterest</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt">ForegroundColor</span><span class="spec-t">,</span><span class="spec-nt optional">BackgroundColor<span class="spec-mods"><span class="spec-mod optional">opt</span></span></span><span class="spec-t">)</span><span class="spec-nt optional">Italic<span class="spec-mods"><span class="spec-mod optional">opt</span></span></span><span class="spec-nt optional">Bold<span class="spec-mods"><span class="spec-mod optional">opt</span></span></span></div></div><div class="spec-note">Throughout the document, broad ranges of syntax tokens will be referred to using <a href="http://manual.macromates.com/en/language_grammars#naming_conventions">TextMate Naming Conventions</a></div></section><section id="sec-Color-Palette" secid="1.2"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Color-Palette">1.2</a></span>Color Palette</h3><section id="sec-Standard" secid="1.2.1"><h4><span class="spec-secid" title="link to this section"><a href="#sec-Standard">1.2.1</a></span>Standard</h4><div class="spec-production" id="Background"><span class="spec-nt"><a href="#Background">Background</a></span><div class="spec-rhs"><span class="spec-t">#282A36</span></div></div><div class="spec-production" id="Foreground"><span class="spec-nt"><a href="#Foreground">Foreground</a></span><div class="spec-rhs"><span class="spec-t">#F8F8F2</span></div></div><div class="spec-production" id="Selection"><span class="spec-nt"><a href="#Selection">Selection</a></span><div class="spec-rhs"><span class="spec-t">#44475A</span></div></div><div class="spec-production" id="Comment"><span class="spec-nt"><a href="#Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">#6272A4</span></div></div><div class="spec-production" id="Red"><span class="spec-nt"><a href="#Red">Red</a></span><div class="spec-rhs"><span class="spec-t">#FF5555</span></div></div><div class="spec-production" id="Orange"><span class="spec-nt"><a href="#Orange">Orange</a></span><div class="spec-rhs"><span class="spec-t">#FFB86C</span></div></div><div class="spec-production" id="Yellow"><span class="spec-nt"><a href="#Yellow">Yellow</a></span><div class="spec-rhs"><span class="spec-t">#F4F99D</span></div></div><div class="spec-production" id="Green"><span class="spec-nt"><a href="#Green">Green</a></span><div class="spec-rhs"><span class="spec-t">#50FA7B</span></div></div><div class="spec-production" id="Purple"><span class="spec-nt"><a href="#Purple">Purple</a></span><div class="spec-rhs"><span class="spec-t">#BD93F9</span></div></div><div class="spec-production" id="Cyan"><span class="spec-nt"><a href="#Cyan">Cyan</a></span><div class="spec-rhs"><span class="spec-t">#8BE9FD</span></div></div><div class="spec-production" id="Pink"><span class="spec-nt"><a href="#Pink">Pink</a></span><div class="spec-rhs"><span class="spec-t">#FF79C6</span></div></div></section><section id="sec-ANSI" secid="1.2.2"><h4><span class="spec-secid" title="link to this section"><a href="#sec-ANSI">1.2.2</a></span>ANSI</h4><div class="spec-production" id="AnsiBlack"><span class="spec-nt"><a href="#AnsiBlack">AnsiBlack</a></span><div class="spec-rhs"><span class="spec-t">#4D4D4D</span></div></div><div class="spec-production" id="AnsiRed"><span class="spec-nt"><a href="#AnsiRed">AnsiRed</a></span><div class="spec-rhs"><span class="spec-t">#FF5555</span></div></div><div class="spec-production" id="AnsiGreen"><span class="spec-nt"><a href="#AnsiGreen">AnsiGreen</a></span><div class="spec-rhs"><span class="spec-t">#50FA7B</span></div></div><div class="spec-production" id="AnsiYellow"><span class="spec-nt"><a href="#AnsiYellow">AnsiYellow</a></span><div class="spec-rhs"><span class="spec-t">#F1FA8C</span></div></div><div class="spec-production" id="AnsiBlue"><span class="spec-nt"><a href="#AnsiBlue">AnsiBlue</a></span><div class="spec-rhs"><span class="spec-t">#BD93F9</span></div></div><div class="spec-production" id="AnsiMagenta"><span class="spec-nt"><a href="#AnsiMagenta">AnsiMagenta</a></span><div class="spec-rhs"><span class="spec-t">#FF79C6</span></div></div><div class="spec-production" id="AnsiCyan"><span class="spec-nt"><a href="#AnsiCyan">AnsiCyan</a></span><div class="spec-rhs"><span class="spec-t">#8BE9FD</span></div></div><div class="spec-production" id="AnsiWhite"><span class="spec-nt"><a href="#AnsiWhite">AnsiWhite</a></span><div class="spec-rhs"><span class="spec-t">#BFBFBF</span></div></div><div class="spec-production" id="AnsiBrightBlack"><span class="spec-nt"><a href="#AnsiBrightBlack">AnsiBrightBlack</a></span><div class="spec-rhs"><span class="spec-t">#575757</span></div></div><div class="spec-production" id="AnsiBrightRed"><span class="spec-nt"><a href="#AnsiBrightRed">AnsiBrightRed</a></span><div class="spec-rhs"><span class="spec-t">#FF6E67</span></div></div><div class="spec-production" id="AnsiBrightGreen"><span class="spec-nt"><a href="#AnsiBrightGreen">AnsiBrightGreen</a></span><div class="spec-rhs"><span class="spec-t">#5AF78E</span></div></div><div class="spec-production" id="AnsiBrightYellow"><span class="spec-nt"><a href="#AnsiBrightYellow">AnsiBrightYellow</a></span><div class="spec-rhs"><span class="spec-t">#F4F99D</span></div></div><div class="spec-production" id="AnsiBrightBlue"><span class="spec-nt"><a href="#AnsiBrightBlue">AnsiBrightBlue</a></span><div class="spec-rhs"><span class="spec-t">#CAA9FA</span></div></div><div class="spec-production" id="AnsiBrightMagenta"><span class="spec-nt"><a href="#AnsiBrightMagenta">AnsiBrightMagenta</a></span><div class="spec-rhs"><span class="spec-t">#FF92D0</span></div></div><div class="spec-production" id="AnsiBrightCyan"><span class="spec-nt"><a href="#AnsiBrightCyan">AnsiBrightCyan</a></span><div class="spec-rhs"><span class="spec-t">#9AEDFE</span></div></div><div class="spec-production" id="AnsiBrightWhite"><span class="spec-nt"><a href="#AnsiBrightWhite">AnsiBrightWhite</a></span><div class="spec-rhs"><span class="spec-t">#F8F8F2</span></div></div></section></section><section id="sec-Example-spec-compliant-theme-implementation" secid="1.3"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Example-spec-compliant-theme-implementation">1.3</a></span>Example spec-compliant theme implementation</h3><p>A fully spec&#8208;compliant theme implementation can be found by visiting the <a href="https://github.com/dracula/visual-studio-code/">dracula/visual&#8208;studio&#8208;code</a> repository.</p></section></section><section id="sec-General" secid="2"><h2><span class="spec-secid" title="link to this section"><a href="#sec-General">2</a></span>General</h2><div class="spec-production" id="Invalid"><span class="spec-nt"><a href="#Invalid">Invalid</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground">Foreground</a></span><span class="spec-t">,</span><span class="spec-nt"><a href="#Red">Red</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Deprecated"><span class="spec-nt"><a href="#Deprecated">Deprecated</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground">Foreground</a></span><span class="spec-t">,</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Error"><span class="spec-nt"><a href="#Error">Error</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red">Red</a></span><span class="spec-t">)</span></div></div><section id="sec-Diffs" secid="2.1"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Diffs">2.1</a></span>Diffs</h3><div class="spec-production" id="DiffText"><span class="spec-nt"><a href="#DiffText">DiffText</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffHeader"><span class="spec-nt"><a href="#DiffHeader">DiffHeader</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffInserted"><span class="spec-nt"><a href="#DiffInserted">DiffInserted</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffDeleted"><span class="spec-nt"><a href="#DiffDeleted">DiffDeleted</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red">Red</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffChanged"><span class="spec-nt"><a href="#DiffChanged">DiffChanged</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Markup-Markdown-RST-etc-" secid="2.2"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Markup-Markdown-RST-etc-">2.2</a></span>Markup (Markdown, RST, etc.)</h3><div class="spec-production" id="MarkupBold"><span class="spec-nt"><a href="#MarkupBold">MarkupBold</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt">Bold</span></div></div><div class="spec-production" id="MarkupHeading"><span class="spec-nt"><a href="#MarkupHeading">MarkupHeading</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span><span class="spec-nt">Bold</span></div></div><div class="spec-production" id="MarkupItalic"><span class="spec-nt"><a href="#MarkupItalic">MarkupItalic</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow">Yellow</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="MarkupListBulletOrNumber"><span class="spec-nt"><a href="#MarkupListBulletOrNumber">MarkupListBulletOrNumber</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupInlineCode"><span class="spec-nt"><a href="#MarkupInlineCode">MarkupInlineCode</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupLinkUrl"><span class="spec-nt"><a href="#MarkupLinkUrl">MarkupLinkUrl</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupLinkText"><span class="spec-nt"><a href="#MarkupLinkText">MarkupLinkText</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupBlockquote"><span class="spec-nt"><a href="#MarkupBlockquote">MarkupBlockquote</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow">Yellow</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="MarkupHorizontalRule"><span class="spec-nt"><a href="#MarkupHorizontalRule">MarkupHorizontalRule</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupCodeBlockWithoutSyntax"><span class="spec-nt"><a href="#MarkupCodeBlockWithoutSyntax">MarkupCodeBlockWithoutSyntax</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupRSTConstants"><span class="spec-nt"><a href="#MarkupRSTConstants">MarkupRSTConstants</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-note">Braces and parens should be the same color as the foreground color of the currently scoped position in the document (e.g. <span class="spec-nt"><a href="#Purple">Purple</a></span> for headings, <span class="spec-nt"><a href="#Foreground">Foreground</a></span> for regular text)</div></section></section><section id="sec-Classes" secid="3"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Classes">3</a></span>Classes</h2><div class="spec-production" id="ClassName"><span class="spec-nt"><a href="#ClassName">ClassName</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="InstanceReservedWords"><span class="spec-nt"><a href="#InstanceReservedWords">InstanceReservedWords</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-note"><span class="spec-nt"><a href="#InstanceReservedWords">InstanceReservedWords</a></span> refers to reserved words that the language uses to interact with the instance (e.g. <code>this</code>, <code>self</code>, <code>super</code>).</div><div class="spec-production" id="InheritedClassName"><span class="spec-nt"><a href="#InheritedClassName">InheritedClassName</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div></section><section id="sec-Comments" secid="4"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Comments">4</a></span>Comments</h2><div class="spec-production" id="Comment"><span class="spec-nt"><a href="#Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DocCommentKeywords"><span class="spec-nt"><a href="#DocCommentKeywords">DocCommentKeywords</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="DocCommentParameters"><span class="spec-nt"><a href="#DocCommentParameters">DocCommentParameters</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div></section><section id="sec-Constants" secid="5"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Constants">5</a></span>Constants</h2><div class="spec-production" id="Constant"><span class="spec-nt"><a href="#Constant">Constant</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="ConstantEscapeSequences"><span class="spec-nt"><a href="#ConstantEscapeSequences">ConstantEscapeSequences</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Entities" secid="6"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Entities">6</a></span>Entities</h2><div class="spec-production" id="HtmlTags"><span class="spec-nt"><a href="#HtmlTags">HtmlTags</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="CssParentSelectors"><span class="spec-nt"><a href="#CssParentSelectors">CssParentSelectors</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="HtmlCssAttributeNames"><span class="spec-nt"><a href="#HtmlCssAttributeNames">HtmlCssAttributeNames</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Functions-Methods" secid="7"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Functions-Methods">7</a></span>Functions/Methods</h2><div class="spec-production" id="FunctionNames"><span class="spec-nt"><a href="#FunctionNames">FunctionNames</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="FunctionParameters"><span class="spec-nt"><a href="#FunctionParameters">FunctionParameters</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="Decorators"><span class="spec-nt"><a href="#Decorators">Decorators</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div></section><section id="sec-Keywords" secid="8"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Keywords">8</a></span>Keywords</h2><div class="spec-production" id="Keyword"><span class="spec-nt"><a href="#Keyword">Keyword</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="KeywordNew"><span class="spec-nt"><a href="#KeywordNew">KeywordNew</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span><span class="spec-nt">Bold</span></div></div><div class="spec-production" id="KeywordGenericCssSelector"><span class="spec-nt"><a href="#KeywordGenericCssSelector">KeywordGenericCssSelector</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Language-Built-ins" secid="9"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Language-Built-ins">9</a></span>Language Built-ins</h2><div class="spec-production" id="Support"><span class="spec-nt"><a href="#Support">Support</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="BuiltInMagicMethodsOrConstants"><span class="spec-nt"><a href="#BuiltInMagicMethodsOrConstants">BuiltInMagicMethodsOrConstants</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="BuiltInFunctions"><span class="spec-nt"><a href="#BuiltInFunctions">BuiltInFunctions</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Punctuation" secid="10"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Punctuation">10</a></span>Punctuation</h2><div class="spec-production" id="SeparatorsReferencesOrAccessors"><span class="spec-nt"><a href="#SeparatorsReferencesOrAccessors">SeparatorsReferencesOrAccessors</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-note"><span class="spec-nt"><a href="#SeparatorsReferencesOrAccessors">SeparatorsReferencesOrAccessors</a></span> does not refer to simple object or class <var>dot</var> accessors.</div><div class="spec-production" id="BracketsParensBraces"><span class="spec-nt"><a href="#BracketsParensBraces">BracketsParensBraces</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="StringInterpolationOperators"><span class="spec-nt"><a href="#StringInterpolationOperators">StringInterpolationOperators</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Serializable-Configuration-Languages" secid="11"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Serializable-Configuration-Languages">11</a></span>Serializable / Configuration Languages</h2><div class="spec-production" id="Keys"><span class="spec-nt"><a href="#Keys">Keys</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DateTime"><span class="spec-nt"><a href="#DateTime">DateTime</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="YamlAliases"><span class="spec-nt"><a href="#YamlAliases">YamlAliases</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green">Green</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span><span class="spec-nt">Underline</span></div></div></section><section id="sec-Storage" secid="12"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Storage">12</a></span>Storage</h2><div class="spec-production" id="Storage"><span class="spec-nt"><a href="#Storage">Storage</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Types"><span class="spec-nt"><a href="#Types">Types</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="Modifiers"><span class="spec-nt"><a href="#Modifiers">Modifiers</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="GenericTemplatesAndMappedDeclarations"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-note"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span> refers to the declarations of generic types only. In the following example, only the <code>T</code> in the brackets would be <span class="spec-nt"><a href="#Orange">Orange</a></span>. <code>function myFunc&lt;T&gt;(x: T): T {}</code></div><div class="spec-note"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span> would also color <code>P</code> and <code>T</code> on the LHS and <code>T</code> in the declaration of the following expression.</div><p><strong>Example</strong></p><pre><code><span class="hljs-keyword">type</span> PartialExample&lt;T&gt; = { <span class="hljs-comment">// T = Orange Italic</span>
-  [P <span class="hljs-keyword">in</span> keyof T]?: T[P];   <span class="hljs-comment">// P and T on the LHS = Orange Italic</span>
+<!DOCTYPE html>
+<!-- Built with spec-md -->
+<html><head><meta charset="utf-8"><title>Dracula Syntax Highlighting Specification</title><style>body {
+  color: #333333;
+  font: 13pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  margin: 6rem auto 3rem;
+  max-width: 780px;
 }
-</code></pre></section><section id="sec-Strings" secid="13"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Strings">13</a></span>Strings</h2><div class="spec-production" id="String"><span class="spec-nt"><a href="#String">String</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow">Yellow</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="StringRegExp"><span class="spec-nt"><a href="#StringRegExp">StringRegExp</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red">Red</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Variables" secid="14"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Variables">14</a></span>Variables</h2><div class="spec-production" id="Variable"><span class="spec-nt"><a href="#Variable">Variable</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="ObjectKeys"><span class="spec-nt"><a href="#ObjectKeys">ObjectKeys</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DestructuringAliasLHS"><span class="spec-nt"><a href="#DestructuringAliasLHS">DestructuringAliasLHS</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt">Italic</span></div></div><div class="spec-production" id="DestructureingAliasRHS"><span class="spec-nt"><a href="#DestructureingAliasRHS">DestructureingAliasRHS</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt">Foregroud</span><span class="spec-t">)</span></div></div><p><strong>Destructuring Example</strong></p><pre><code><span class="hljs-keyword">const</span> x = {
-    foo: <span class="hljs-string">'foo'</span>,
-    bar: <span class="hljs-string">'bar'</span>,
-    baz: <span class="hljs-string">'baz'</span>,
-};
 
-<span class="hljs-comment">// foo = Orange Italic</span>
-<span class="hljs-comment">// myFoo = Foreground</span>
-<span class="hljs-keyword">const</span> { foo: myFoo } = x;
-</code></pre><p><strong>Import/Export Example</strong></p><pre><code><span class="hljs-keyword">export</span> { Foo };                     <span class="hljs-comment">// Foo = Foreground</span>
-<span class="hljs-keyword">export</span> { Foo <span class="hljs-keyword">as</span> myFoo };            <span class="hljs-comment">// Foo = Orange Italic, myFoo = Foreground</span>
-<span class="hljs-keyword">import</span> { Foo <span class="hljs-keyword">as</span> myFoo } <span class="hljs-keyword">from</span> <span class="hljs-string">'foo'</span>; <span class="hljs-comment">// Foo = Orange Italic, myFoo = Foreground</span>
-<span class="hljs-keyword">import</span> { Foo } <span class="hljs-keyword">from</span> <span class="hljs-string">'foo'</span>;          <span class="hljs-comment">// Foo = Foreground</span>
-</code></pre></section><footer>Written in <a href="http://leebyron.com/spec-md/" target="_blank">Spec Markdown</a>.</footer><input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label><div class="spec-sidebar" aria-hidden><div class="spec-toc"><div class="title"><a href="#">Dracula Syntax Highlighting Specification</a></div><ol><li id="_sidebar_1"><a href="#sec-Prelude"><span class="spec-secid">1</span>Prelude</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_1" /><label for="_sidebar_toggle_1"></label><ol><li id="_sidebar_1.1"><a href="#sec-Interpreting-this-specification"><span class="spec-secid">1.1</span>Interpreting this specification</a></li><li id="_sidebar_1.2"><a href="#sec-Color-Palette"><span class="spec-secid">1.2</span>Color Palette</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_1.2" /><label for="_sidebar_toggle_1.2"></label><ol><li id="_sidebar_1.2.1"><a href="#sec-Standard"><span class="spec-secid">1.2.1</span>Standard</a></li><li id="_sidebar_1.2.2"><a href="#sec-ANSI"><span class="spec-secid">1.2.2</span>ANSI</a></li></ol></li><li id="_sidebar_1.3"><a href="#sec-Example-spec-compliant-theme-implementation"><span class="spec-secid">1.3</span>Example spec-compliant theme implementation</a></li></ol></li><li id="_sidebar_2"><a href="#sec-General"><span class="spec-secid">2</span>General</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2" /><label for="_sidebar_toggle_2"></label><ol><li id="_sidebar_2.1"><a href="#sec-Diffs"><span class="spec-secid">2.1</span>Diffs</a></li><li id="_sidebar_2.2"><a href="#sec-Markup-Markdown-RST-etc-"><span class="spec-secid">2.2</span>Markup (Markdown, RST, etc.)</a></li></ol></li><li id="_sidebar_3"><a href="#sec-Classes"><span class="spec-secid">3</span>Classes</a></li><li id="_sidebar_4"><a href="#sec-Comments"><span class="spec-secid">4</span>Comments</a></li><li id="_sidebar_5"><a href="#sec-Constants"><span class="spec-secid">5</span>Constants</a></li><li id="_sidebar_6"><a href="#sec-Entities"><span class="spec-secid">6</span>Entities</a></li><li id="_sidebar_7"><a href="#sec-Functions-Methods"><span class="spec-secid">7</span>Functions/Methods</a></li><li id="_sidebar_8"><a href="#sec-Keywords"><span class="spec-secid">8</span>Keywords</a></li><li id="_sidebar_9"><a href="#sec-Language-Built-ins"><span class="spec-secid">9</span>Language Built-ins</a></li><li id="_sidebar_10"><a href="#sec-Punctuation"><span class="spec-secid">10</span>Punctuation</a></li><li id="_sidebar_11"><a href="#sec-Serializable-Configuration-Languages"><span class="spec-secid">11</span>Serializable / Configuration Languages</a></li><li id="_sidebar_12"><a href="#sec-Storage"><span class="spec-secid">12</span>Storage</a></li><li id="_sidebar_13"><a href="#sec-Strings"><span class="spec-secid">13</span>Strings</a></li><li id="_sidebar_14"><a href="#sec-Variables"><span class="spec-secid">14</span>Variables</a></li></ol></div><script>
-(function () {
+
+/* Links */
+
+a {
+  color: #3B5998;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Section headers */
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  margin: 3rem 0 1em;
+  position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 8rem 0 2em;
+}
+
+h2 {
+  font-size: 1.45em;
+  margin: 8rem 0 1em;
+}
+
+h3 {
+  font-size: 1.30em;
+  margin: 5rem 0 1em;
+}
+
+h4 {
+  font-size: 1.20em;
+}
+
+h5 {
+  font-size: 1.12em;
+}
+
+h6, h7, h8 {
+  font-size: 1.1em;
+}
+
+section .spec-secid {
+  margin-right: 1ex;
+  position: absolute;
+  right: 100%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+footer {
+  font-size: 75%;
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 12rem;
+}
+
+
+/* Table of contents */
+
+.spec-toc {
+  margin: 1rem 0 3rem;
+}
+
+.spec-toc .title {
+  content: 'Contents';
+  display: block;
+  font-weight: bold;
+  margin: 3rem 0 1rem;
+}
+
+.spec-toc .spec-secid {
+  margin-right: 1ex;
+}
+
+.spec-toc ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.spec-toc ol ol {
+  list-style: none;
+  padding-left: 2ex;
+}
+
+.spec-toc li {
+  position: relative;
+  padding: 5px 0 0 30px;
+  margin: -5px 0 0 -30px;
+}
+
+.spec-toc a {
+  color: #333333;
+}
+
+.spec-toc a:hover {
+  text-decoration: none;
+}
+
+.spec-toc a .spec-secid {
+  color: #3B5998;
+}
+
+.spec-toc a:hover .spec-secid {
+  text-decoration: underline;
+}
+
+.spec-toc .toggle {
+  display: none;
+}
+
+.spec-toc .toggle + label {
+  cursor: pointer;
+  left: 10px;
+  opacity: 1;
+  padding: 3px 5px 3px 6px;
+  position: absolute;
+  top: 8px;
+  transform: rotate(0deg);
+  transition: all 0.18s ease-in-out;
+}
+
+.spec-toc .toggle + label:after {
+  border-color: transparent transparent transparent #bbc;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  content: ' ';
+  display: block;
+  height: 0;
+  width: 0;
+}
+
+.spec-toc .toggle:checked + label {
+  transform: rotate(90deg);
+}
+
+.spec-toc li:not(:hover) > .toggle:checked + label {
+  opacity: 0;
+}
+
+.spec-toc .toggle:not(:checked) ~ ol {
+  max-height: 0;
+  overflow: hidden;
+}
+
+
+/* Sidebar */
+
+.spec-sidebar-toggle {
+  display: none;
+}
+
+.spec-sidebar-toggle + label {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px 15px;
+  font-size: 30px;
+  color: rgba(0,0,0,0.7);
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.spec-sidebar {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  font-size: 80%;
+  overflow-y: scroll;
+  height: 100%;
+  padding: 0 0 5rem 30px;
+  box-sizing: border-box;
+  background: #f0f0f0;
+}
+
+.spec-sidebar-toggle:checked ~ .spec-sidebar {
+  display: block;
+  box-shadow:
+    -1px 0 rgba(0,0,0,0.12),
+    -4px 0 8px -2px rgba(0,0,0,0.05);
+}
+
+.spec-sidebar .viewing > a:after {
+  color: #8b9;
+  content: '\2022';
+  margin-left: 1ex;
+}
+
+@media (min-width: 1240px) {
+  .spec-sidebar-toggle + label {
+    display: none;
+  }
+
+  .spec-sidebar {
+    display: block;
+    box-shadow:
+      inset 1px 0 rgba(0,0,0,0.05),
+      inset 4px 0 8px -2px rgba(0,0,0,0.08) !important;
+  }
+
+  body {
+    padding-right: 300px;
+  }
+}
+
+
+/* Notes */
+
+.spec-note {
+  background: #FEFEF3;
+  border-left: solid 4px #F4E925;
+  margin: 1em -1em;
+  min-width: 416px;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-note::before {
+  color: #6C6613;
+  content: 'Note';
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+
+/* Todos */
+
+.spec-todo {
+  color: #666666;
+  margin: 1em 0 1em 5em;
+  min-height: 1em;
+}
+
+.spec-todo::before {
+  content: 'todo';
+  display: block;
+  float: left;
+  margin-left: -5em;
+  text-transform: uppercase;
+}
+
+/* Index table */
+
+.spec-index ol {
+  list-style-type: none;
+  margin: 0 0 0 2rem;
+  padding: 0;
+  column-width: 210px;
+  column-gap: 2rem;
+}
+
+.spec-index ol li {
+  width: min-content;
+}
+
+/* Code */
+
+code {
+  background: #FAFAFA;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 85%;
+  font-weight: inherit;
+  margin: -2px -1px;
+  padding: 3px 3px;
+  white-space: pre;
+}
+
+pre code {
+  background: none;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  background: #FAFAFA;
+  border-left: solid 4px #E9E9E9;
+  margin: 1em -1em;
+  min-width: 40ch;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-example {
+  background: #FAFAFF;
+  border-left: solid 4px #BBBBFF;
+}
+
+.spec-counter-example {
+  background: #FFFAFA;
+  border-left: solid 4px #FFBBBB;
+}
+
+.spec-example > a,
+.spec-counter-example > a {
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.spec-counter-example > a {
+  color: #98593b;
+}
+
+
+/* Tables */
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #F9F9F9;
+}
+
+td, th {
+  border: 1px solid #D0D0D0;
+  padding: 0.4em;
+  vertical-align: baseline;
+}
+
+
+/* Edits */
+
+ins {
+  background-color: rgba(0, 200, 30, 0.08);
+  text-decoration: none;
+}
+
+del {
+  background-color: rgba(200, 0, 0, 0.08);
+}
+
+.spec-added, .spec-removed {
+  border-left: 4px solid;
+  margin-left: -18px;
+  padding-left: 14px;
+}
+
+.spec-added {
+  border-color: #396;
+}
+
+.spec-removed {
+  border-color: #933;
+  text-decoration: line-through;
+}
+
+
+/* Values */
+
+.spec-keyword {
+  font-weight: bold;
+}
+
+.spec-string {
+  font-family: Consolas, Monaco, monospace;
+  white-space: pre;
+}
+
+var {
+  font-style: italic;
+}
+
+*[data-name] {
+  transition: 0.15s background ease-out;
+  border-radius: 2px;
+  padding: 0 3px;
+  margin: 0 -3px;
+}
+
+
+/* Grammar semantics, algorithms and calls */
+
+.spec-semantic,
+.spec-algo {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-semantic > .spec-rhs {
+  display: inline-block;
+  margin-left: 1ex;
+}
+
+.spec-semantic > .spec-nt::after,
+.spec-algo > .spec-call:first-child::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 1ex;
+}
+
+.spec-semantic ol, .spec-semantic ol ol ol ol,
+.spec-algo ol, .spec-algo ol ol ol ol {
+  list-style-type: decimal;
+}
+
+.spec-semantic ol ol, .spec-semantic ol ol ol ol ol,
+.spec-algo ol ol, .spec-algo ol ol ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.spec-semantic ol ol ol, .spec-semantic ol ol ol ol ol ol,
+.spec-algo ol ol ol, .spec-algo ol ol ol ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.spec-call > a {
+  color: inherit;
+}
+
+
+/* Grammar productions */
+
+.spec-production {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-production > .spec-nt::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin: 0 1ex;
+}
+
+.spec-semantic.d2 > .spec-nt::after,
+.spec-production.d2 > .spec-nt::after {
+  content: '::';
+}
+
+.spec-semantic.d3 > .spec-nt::after,
+.spec-production.d3 > .spec-nt::after {
+  content: ':::';
+}
+
+.spec-rhs {
+  margin-left: 2rem;
+}
+
+.spec-oneof {
+  display: inline;
+}
+
+.spec-oneof::before {
+  content: 'one of';
+  font-style: normal;
+  font-weight: bold;
+}
+
+.spec-oneof > table {
+  margin-left: 2rem;
+}
+
+.spec-oneof .spec-rhs {
+  border: none;
+  margin: 0;
+  padding: 0 0.5em;
+  vertical-align: baseline;
+}
+
+.spec-rhs .spec-constrained:not(:first-child),
+.spec-rhs .spec-quantified:not(:first-child),
+.spec-rhs .spec-nt:not(:first-child),
+.spec-rhs .spec-t:not(:first-child),
+.spec-rhs .spec-rx:not(:first-child),
+.spec-rhs .spec-prose:not(:first-child),
+.spec-rhs .spec-empty:not(:first-child),
+.spec-rhs .spec-lookahead:not(:first-child) {
+  margin-left: 1ex;
+}
+
+.spec-condition {
+  font-size: 85%;
+}
+
+.spec-condition::before {
+  content: '[+'
+}
+
+.spec-condition.not::before {
+  content: '[~'
+}
+
+.spec-condition::after {
+  content: ']'
+}
+
+.spec-empty,
+.spec-prose {
+  color: #666666;
+}
+
+.spec-nt {
+  font-style: italic;
+}
+
+.spec-nt > a {
+  color: inherit;
+}
+
+.spec-quantifiers,
+.spec-params {
+  font-size: 65%;
+  font-style: normal;
+  vertical-align: sub;
+}
+
+.spec-quantifier.list {
+  color: #3348D3;
+}
+
+.spec-quantifier.optional {
+  color: #83238E;
+}
+
+.spec-params,
+.spec-condition {
+  color: #1C7758;
+}
+
+.spec-params::before {
+  content: '[';
+}
+
+.spec-params::after {
+  content: ']';
+}
+
+.spec-quantifier:not(:last-child)::after,
+.spec-param:not(:last-child)::after {
+  color: #666666;
+  content: ', ';
+}
+
+.spec-param.conditional::before {
+  content: '?';
+}
+
+.spec-t, .spec-rx {
+  color: #333333;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.spec-butnot::before {
+  color: #666666;
+  content: 'but not';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-butnot > *:not(:first-child)::before {
+  color: #666666;
+  content: 'or';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-rhs .spec-oneof::before,
+.spec-rhs .spec-butnot::before {
+  margin-left: 1ex;
+}
+
+.spec-lookahead > * {
+  margin: 0 !important;
+}
+
+.spec-lookahead > *:not(:first-child)::before {
+  color: #666666;
+  content: ', ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead::before {
+  color: #666666;
+  content: '[lookahead = ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead.not::before {
+  content: '[lookahead \2260  ';
+}
+
+.spec-lookahead.set::before {
+  content: '[lookahead \2208  {';
+  margin-right: 0;
+}
+
+.spec-lookahead.set.not::before {
+  content: '[lookahead \2209  {';
+}
+
+.spec-lookahead::after {
+  color: #666666;
+  content: ']';
+}
+
+.spec-lookahead.set::after {
+  content: '}]';
+}
+</style><style>/* Copied from node_modules/prismjs/themes/prism.css */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style><script>(function (){
+var styleSheet = document.getElementsByTagName('style')[0].sheet;
+var ruleIndex;
+
+function removeHighlight() {
+  if (ruleIndex) {
+    styleSheet.deleteRule(ruleIndex);
+    ruleIndex = void 0;
+  }
+}
+
+function highlightKeyword(name) {
+  removeHighlight();
+  ruleIndex = styleSheet.insertRule(
+    '*[data-name="' + name + '"] { background: #FBF8D0; }',
+    styleSheet.cssRules.length
+  );
+}
+
+document.documentElement.addEventListener('mouseover', function (event) {
+  var nameAttribute = event.target.attributes['data-name'];
+  if (nameAttribute) {
+    highlightKeyword(nameAttribute.value);
+  }
+});
+
+document.documentElement.addEventListener('mouseout', removeHighlight);
+})()</script></head><body><header><h1>Dracula Syntax Highlighting Specification</h1><nav class="spec-toc"><div class="title">Contents</div><ol><li><a href="#sec-Prelude"><span class="spec-secid">1</span>Prelude</a><input hidden class="toggle" type="checkbox" checked id="_toggle_1" /><label for="_toggle_1"></label><ol><li><a href="#sec-Interpreting-this-specification"><span class="spec-secid">1.1</span>Interpreting this specification</a></li><li><a href="#sec-Color-Palette"><span class="spec-secid">1.2</span>Color Palette</a><input hidden class="toggle" type="checkbox" checked id="_toggle_1.2" /><label for="_toggle_1.2"></label><ol><li><a href="#sec-Standard"><span class="spec-secid">1.2.1</span>Standard</a></li><li><a href="#sec-ANSI"><span class="spec-secid">1.2.2</span>ANSI</a></li></ol></li><li><a href="#sec-Example-spec-compliant-theme-implementation"><span class="spec-secid">1.3</span>Example spec-compliant theme implementation</a></li></ol></li><li><a href="#sec-General"><span class="spec-secid">2</span>General</a><input hidden class="toggle" type="checkbox" checked id="_toggle_2" /><label for="_toggle_2"></label><ol><li><a href="#sec-Diffs"><span class="spec-secid">2.1</span>Diffs</a></li><li><a href="#sec-Markup-Markdown-RST-etc-"><span class="spec-secid">2.2</span>Markup (Markdown, RST, etc.)</a></li></ol></li><li><a href="#sec-Classes"><span class="spec-secid">3</span>Classes</a></li><li><a href="#sec-Comments"><span class="spec-secid">4</span>Comments</a></li><li><a href="#sec-Constants"><span class="spec-secid">5</span>Constants</a></li><li><a href="#sec-Entities"><span class="spec-secid">6</span>Entities</a></li><li><a href="#sec-Functions-Methods"><span class="spec-secid">7</span>Functions/Methods</a></li><li><a href="#sec-Keywords"><span class="spec-secid">8</span>Keywords</a></li><li><a href="#sec-Language-Built-ins"><span class="spec-secid">9</span>Language Built-ins</a></li><li><a href="#sec-Punctuation"><span class="spec-secid">10</span>Punctuation</a></li><li><a href="#sec-Serializable-Configuration-Languages"><span class="spec-secid">11</span>Serializable / Configuration Languages</a></li><li><a href="#sec-Storage"><span class="spec-secid">12</span>Storage</a></li><li><a href="#sec-Strings"><span class="spec-secid">13</span>Strings</a></li><li><a href="#sec-Variables"><span class="spec-secid">14</span>Variables</a></li><li><a href="#index"><span class="spec-secid">§</span>Index</a></li></ol></nav></header><section id="sec-Prelude" secid="1"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Prelude">1</a></span>Prelude</h2><section id="sec-Interpreting-this-specification" secid="1.1"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Interpreting-this-specification">1.1</a></span>Interpreting this specification</h3><p>Language syntaxes and scopes will be referred to in the following manner throughout this document:</p><div class="spec-production" id="ScopeOfInterest"><span class="spec-nt"><a href="#ScopeOfInterest" data-name="ScopeOfInterest">ScopeOfInterest</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><span data-name="ForegroundColor">ForegroundColor</span></span><span class="spec-t">,</span><span class="spec-quantified"><span class="spec-nt"><span data-name="BackgroundColor">BackgroundColor</span></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">)</span><span class="spec-quantified"><span class="spec-nt"><span data-name="Italic">Italic</span></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><span data-name="Bold">Bold</span></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div></div><div class="spec-note">Throughout the document, broad ranges of syntax tokens will be referred to using <a href="http://manual.macromates.com/en/language_grammars#naming_conventions">TextMate Naming Conventions</a></div></section><section id="sec-Color-Palette" secid="1.2"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Color-Palette">1.2</a></span>Color Palette</h3><section id="sec-Standard" secid="1.2.1"><h4><span class="spec-secid" title="link to this section"><a href="#sec-Standard">1.2.1</a></span>Standard</h4><div class="spec-production" id="Background"><span class="spec-nt"><a href="#Background" data-name="Background">Background</a></span><div class="spec-rhs"><span class="spec-t">#282A36</span></div></div><div class="spec-production" id="Foreground"><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><div class="spec-rhs"><span class="spec-t">#F8F8F2</span></div></div><div class="spec-production" id="Selection"><span class="spec-nt"><a href="#Selection" data-name="Selection">Selection</a></span><div class="spec-rhs"><span class="spec-t">#44475A</span></div></div><div class="spec-production" id="Comment"><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">#6272A4</span></div></div><div class="spec-production" id="Red"><span class="spec-nt"><a href="#Red" data-name="Red">Red</a></span><div class="spec-rhs"><span class="spec-t">#FF5555</span></div></div><div class="spec-production" id="Orange"><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><div class="spec-rhs"><span class="spec-t">#FFB86C</span></div></div><div class="spec-production" id="Yellow"><span class="spec-nt"><a href="#Yellow" data-name="Yellow">Yellow</a></span><div class="spec-rhs"><span class="spec-t">#F4F99D</span></div></div><div class="spec-production" id="Green"><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><div class="spec-rhs"><span class="spec-t">#50FA7B</span></div></div><div class="spec-production" id="Purple"><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><div class="spec-rhs"><span class="spec-t">#BD93F9</span></div></div><div class="spec-production" id="Cyan"><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><div class="spec-rhs"><span class="spec-t">#8BE9FD</span></div></div><div class="spec-production" id="Pink"><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><div class="spec-rhs"><span class="spec-t">#FF79C6</span></div></div></section><section id="sec-ANSI" secid="1.2.2"><h4><span class="spec-secid" title="link to this section"><a href="#sec-ANSI">1.2.2</a></span>ANSI</h4><div class="spec-production" id="AnsiBlack"><span class="spec-nt"><a href="#AnsiBlack" data-name="AnsiBlack">AnsiBlack</a></span><div class="spec-rhs"><span class="spec-t">#21222C</span></div></div><div class="spec-production" id="AnsiRed"><span class="spec-nt"><a href="#AnsiRed" data-name="AnsiRed">AnsiRed</a></span><div class="spec-rhs"><span class="spec-t">#FF5555</span></div></div><div class="spec-production" id="AnsiGreen"><span class="spec-nt"><a href="#AnsiGreen" data-name="AnsiGreen">AnsiGreen</a></span><div class="spec-rhs"><span class="spec-t">#50FA7B</span></div></div><div class="spec-production" id="AnsiYellow"><span class="spec-nt"><a href="#AnsiYellow" data-name="AnsiYellow">AnsiYellow</a></span><div class="spec-rhs"><span class="spec-t">#F1FA8C</span></div></div><div class="spec-production" id="AnsiBlue"><span class="spec-nt"><a href="#AnsiBlue" data-name="AnsiBlue">AnsiBlue</a></span><div class="spec-rhs"><span class="spec-t">#BD93F9</span></div></div><div class="spec-production" id="AnsiMagenta"><span class="spec-nt"><a href="#AnsiMagenta" data-name="AnsiMagenta">AnsiMagenta</a></span><div class="spec-rhs"><span class="spec-t">#FF79C6</span></div></div><div class="spec-production" id="AnsiCyan"><span class="spec-nt"><a href="#AnsiCyan" data-name="AnsiCyan">AnsiCyan</a></span><div class="spec-rhs"><span class="spec-t">#8BE9FD</span></div></div><div class="spec-production" id="AnsiWhite"><span class="spec-nt"><a href="#AnsiWhite" data-name="AnsiWhite">AnsiWhite</a></span><div class="spec-rhs"><span class="spec-t">#F8F8F2</span></div></div><div class="spec-production" id="AnsiBrightBlack"><span class="spec-nt"><a href="#AnsiBrightBlack" data-name="AnsiBrightBlack">AnsiBrightBlack</a></span><div class="spec-rhs"><span class="spec-t">#6272A4</span></div></div><div class="spec-production" id="AnsiBrightRed"><span class="spec-nt"><a href="#AnsiBrightRed" data-name="AnsiBrightRed">AnsiBrightRed</a></span><div class="spec-rhs"><span class="spec-t">#FF6E6E</span></div></div><div class="spec-production" id="AnsiBrightGreen"><span class="spec-nt"><a href="#AnsiBrightGreen" data-name="AnsiBrightGreen">AnsiBrightGreen</a></span><div class="spec-rhs"><span class="spec-t">#69FF94</span></div></div><div class="spec-production" id="AnsiBrightYellow"><span class="spec-nt"><a href="#AnsiBrightYellow" data-name="AnsiBrightYellow">AnsiBrightYellow</a></span><div class="spec-rhs"><span class="spec-t">#FFFFA5</span></div></div><div class="spec-production" id="AnsiBrightBlue"><span class="spec-nt"><a href="#AnsiBrightBlue" data-name="AnsiBrightBlue">AnsiBrightBlue</a></span><div class="spec-rhs"><span class="spec-t">#D6ACFF</span></div></div><div class="spec-production" id="AnsiBrightMagenta"><span class="spec-nt"><a href="#AnsiBrightMagenta" data-name="AnsiBrightMagenta">AnsiBrightMagenta</a></span><div class="spec-rhs"><span class="spec-t">#FF92DF</span></div></div><div class="spec-production" id="AnsiBrightCyan"><span class="spec-nt"><a href="#AnsiBrightCyan" data-name="AnsiBrightCyan">AnsiBrightCyan</a></span><div class="spec-rhs"><span class="spec-t">#A4FFFF</span></div></div><div class="spec-production" id="AnsiBrightWhite"><span class="spec-nt"><a href="#AnsiBrightWhite" data-name="AnsiBrightWhite">AnsiBrightWhite</a></span><div class="spec-rhs"><span class="spec-t">#FFFFFF</span></div></div></section></section><section id="sec-Example-spec-compliant-theme-implementation" secid="1.3"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Example-spec-compliant-theme-implementation">1.3</a></span>Example spec-compliant theme implementation</h3><p>A fully spec&#8208;compliant theme implementation can be found by visiting the <a href="https://github.com/dracula/visual-studio-code/">dracula/visual&#8208;studio&#8208;code</a> repository.</p></section></section><section id="sec-General" secid="2"><h2><span class="spec-secid" title="link to this section"><a href="#sec-General">2</a></span>General</h2><div class="spec-production" id="Invalid"><span class="spec-nt"><a href="#Invalid" data-name="Invalid">Invalid</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><span class="spec-t">,</span><span class="spec-nt"><a href="#Red" data-name="Red">Red</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Deprecated"><span class="spec-nt"><a href="#Deprecated" data-name="Deprecated">Deprecated</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><span class="spec-t">,</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Error"><span class="spec-nt"><a href="#Error" data-name="Error">Error</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red" data-name="Red">Red</a></span><span class="spec-t">)</span></div></div><section id="sec-Diffs" secid="2.1"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Diffs">2.1</a></span>Diffs</h3><div class="spec-production" id="DiffText"><span class="spec-nt"><a href="#DiffText" data-name="DiffText">DiffText</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffHeader"><span class="spec-nt"><a href="#DiffHeader" data-name="DiffHeader">DiffHeader</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffInserted"><span class="spec-nt"><a href="#DiffInserted" data-name="DiffInserted">DiffInserted</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffDeleted"><span class="spec-nt"><a href="#DiffDeleted" data-name="DiffDeleted">DiffDeleted</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red" data-name="Red">Red</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DiffChanged"><span class="spec-nt"><a href="#DiffChanged" data-name="DiffChanged">DiffChanged</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Markup-Markdown-RST-etc-" secid="2.2"><h3><span class="spec-secid" title="link to this section"><a href="#sec-Markup-Markdown-RST-etc-">2.2</a></span>Markup (Markdown, RST, etc.)</h3><div class="spec-production" id="MarkupBold"><span class="spec-nt"><a href="#MarkupBold" data-name="MarkupBold">MarkupBold</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Bold">Bold</span></span></div></div><div class="spec-production" id="MarkupHeading"><span class="spec-nt"><a href="#MarkupHeading" data-name="MarkupHeading">MarkupHeading</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Bold">Bold</span></span></div></div><div class="spec-production" id="MarkupItalic"><span class="spec-nt"><a href="#MarkupItalic" data-name="MarkupItalic">MarkupItalic</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow" data-name="Yellow">Yellow</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="MarkupListBulletOrNumber"><span class="spec-nt"><a href="#MarkupListBulletOrNumber" data-name="MarkupListBulletOrNumber">MarkupListBulletOrNumber</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupInlineCode"><span class="spec-nt"><a href="#MarkupInlineCode" data-name="MarkupInlineCode">MarkupInlineCode</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupLinkUrl"><span class="spec-nt"><a href="#MarkupLinkUrl" data-name="MarkupLinkUrl">MarkupLinkUrl</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupLinkText"><span class="spec-nt"><a href="#MarkupLinkText" data-name="MarkupLinkText">MarkupLinkText</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupBlockquote"><span class="spec-nt"><a href="#MarkupBlockquote" data-name="MarkupBlockquote">MarkupBlockquote</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow" data-name="Yellow">Yellow</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="MarkupHorizontalRule"><span class="spec-nt"><a href="#MarkupHorizontalRule" data-name="MarkupHorizontalRule">MarkupHorizontalRule</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupCodeBlockWithoutSyntax"><span class="spec-nt"><a href="#MarkupCodeBlockWithoutSyntax" data-name="MarkupCodeBlockWithoutSyntax">MarkupCodeBlockWithoutSyntax</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="MarkupRSTConstants"><span class="spec-nt"><a href="#MarkupRSTConstants" data-name="MarkupRSTConstants">MarkupRSTConstants</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-note">Braces and parens should be the same color as the foreground color of the currently scoped position in the document (e.g. <span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span> for headings, <span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span> for regular text)</div></section></section><section id="sec-Classes" secid="3"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Classes">3</a></span>Classes</h2><div class="spec-production" id="ClassName"><span class="spec-nt"><a href="#ClassName" data-name="ClassName">ClassName</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="InstanceReservedWords"><span class="spec-nt"><a href="#InstanceReservedWords" data-name="InstanceReservedWords">InstanceReservedWords</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-note"><span class="spec-nt"><a href="#InstanceReservedWords" data-name="InstanceReservedWords">InstanceReservedWords</a></span> refers to reserved words that the language uses to interact with the instance (e.g. <code>this</code>, <code>self</code>, <code>super</code>).</div><div class="spec-production" id="InheritedClassName"><span class="spec-nt"><a href="#InheritedClassName" data-name="InheritedClassName">InheritedClassName</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div></section><section id="sec-Comments" secid="4"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Comments">4</a></span>Comments</h2><div class="spec-production" id="Comment"><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DocCommentKeywords"><span class="spec-nt"><a href="#DocCommentKeywords" data-name="DocCommentKeywords">DocCommentKeywords</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DocCommentTypes"><span class="spec-nt"><a href="#DocCommentTypes" data-name="DocCommentTypes">DocCommentTypes</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="DocCommentParameters"><span class="spec-nt"><a href="#DocCommentParameters" data-name="DocCommentParameters">DocCommentParameters</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><p><strong>Example</strong></p><pre><code><span class="token comment" spellcheck="true">/**
+ * @param {string} foo - Some string parameter.
+// ^^^^^^ -------------------------------------- Pink
+//        ^      ^ ----------------------------- Cyan
+//         ^^^^^^ ------------------------------ Cyan Italic
+//                 ^^^ ------------------------- Orange Italic
+ */</span>
+</code></pre></section><section id="sec-Constants" secid="5"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Constants">5</a></span>Constants</h2><div class="spec-production" id="Constant"><span class="spec-nt"><a href="#Constant" data-name="Constant">Constant</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="ConstantEscapeSequences"><span class="spec-nt"><a href="#ConstantEscapeSequences" data-name="ConstantEscapeSequences">ConstantEscapeSequences</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Entities" secid="6"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Entities">6</a></span>Entities</h2><div class="spec-production" id="HtmlTags"><span class="spec-nt"><a href="#HtmlTags" data-name="HtmlTags">HtmlTags</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="CssParentSelectors"><span class="spec-nt"><a href="#CssParentSelectors" data-name="CssParentSelectors">CssParentSelectors</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="HtmlCssAttributeNames"><span class="spec-nt"><a href="#HtmlCssAttributeNames" data-name="HtmlCssAttributeNames">HtmlCssAttributeNames</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Functions-Methods" secid="7"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Functions-Methods">7</a></span>Functions/Methods</h2><div class="spec-production" id="FunctionNames"><span class="spec-nt"><a href="#FunctionNames" data-name="FunctionNames">FunctionNames</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="FunctionParameters"><span class="spec-nt"><a href="#FunctionParameters" data-name="FunctionParameters">FunctionParameters</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="Decorators"><span class="spec-nt"><a href="#Decorators" data-name="Decorators">Decorators</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div></section><section id="sec-Keywords" secid="8"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Keywords">8</a></span>Keywords</h2><div class="spec-production" id="Keyword"><span class="spec-nt"><a href="#Keyword" data-name="Keyword">Keyword</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="KeywordNew"><span class="spec-nt"><a href="#KeywordNew" data-name="KeywordNew">KeywordNew</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Bold">Bold</span></span></div></div><div class="spec-production" id="KeywordGenericCssSelector"><span class="spec-nt"><a href="#KeywordGenericCssSelector" data-name="KeywordGenericCssSelector">KeywordGenericCssSelector</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Language-Built-ins" secid="9"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Language-Built-ins">9</a></span>Language Built-ins</h2><div class="spec-production" id="Support"><span class="spec-nt"><a href="#Support" data-name="Support">Support</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="BuiltInMagicMethodsOrConstants"><span class="spec-nt"><a href="#BuiltInMagicMethodsOrConstants" data-name="BuiltInMagicMethodsOrConstants">BuiltInMagicMethodsOrConstants</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Purple" data-name="Purple">Purple</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="BuiltInFunctions"><span class="spec-nt"><a href="#BuiltInFunctions" data-name="BuiltInFunctions">BuiltInFunctions</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Punctuation" secid="10"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Punctuation">10</a></span>Punctuation</h2><div class="spec-production" id="SeparatorsReferencesOrAccessors"><span class="spec-nt"><a href="#SeparatorsReferencesOrAccessors" data-name="SeparatorsReferencesOrAccessors">SeparatorsReferencesOrAccessors</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-note"><span class="spec-nt"><a href="#SeparatorsReferencesOrAccessors" data-name="SeparatorsReferencesOrAccessors">SeparatorsReferencesOrAccessors</a></span> does not refer to simple object or class <var data-name="dot">dot</var> accessors.</div><div class="spec-production" id="BracketsParensBraces"><span class="spec-nt"><a href="#BracketsParensBraces" data-name="BracketsParensBraces">BracketsParensBraces</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="StringInterpolationOperators"><span class="spec-nt"><a href="#StringInterpolationOperators" data-name="StringInterpolationOperators">StringInterpolationOperators</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Serializable-Configuration-Languages" secid="11"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Serializable-Configuration-Languages">11</a></span>Serializable / Configuration Languages</h2><div class="spec-production" id="Keys"><span class="spec-nt"><a href="#Keys" data-name="Keys">Keys</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DateTime"><span class="spec-nt"><a href="#DateTime" data-name="DateTime">DateTime</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="YamlAliases"><span class="spec-nt"><a href="#YamlAliases" data-name="YamlAliases">YamlAliases</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Green" data-name="Green">Green</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span><span class="spec-nt"><span data-name="Underline">Underline</span></span></div></div></section><section id="sec-Storage" secid="12"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Storage">12</a></span>Storage</h2><div class="spec-production" id="Storage"><span class="spec-nt"><a href="#Storage" data-name="Storage">Storage</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="Types"><span class="spec-nt"><a href="#Types" data-name="Types">Types</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Cyan" data-name="Cyan">Cyan</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="Modifiers"><span class="spec-nt"><a href="#Modifiers" data-name="Modifiers">Modifiers</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Pink" data-name="Pink">Pink</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="GenericTemplatesAndMappedDeclarations"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations" data-name="GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-note"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations" data-name="GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span> refers to the declarations of generic types only. In the following example, only the <code>T</code> in the brackets would be <span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span>. <code>function myFunc&lt;T&gt;(x: T): T {}</code></div><div class="spec-note"><span class="spec-nt"><a href="#GenericTemplatesAndMappedDeclarations" data-name="GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></span> would also color <code>P</code> and <code>T</code> on the LHS and <code>T</code> in the declaration of the following expression.</div><p><strong>Example</strong></p><pre><code><span class="token keyword">type</span> PartialExample<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// T = Orange Italic</span>
+  <span class="token punctuation">[</span>P <span class="token keyword">in</span> keyof T<span class="token punctuation">]</span><span class="token operator">?</span><span class="token punctuation">:</span> T<span class="token punctuation">[</span>P<span class="token punctuation">]</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// P and T on the LHS = Orange Italic</span>
+<span class="token punctuation">}</span>
+</code></pre></section><section id="sec-Strings" secid="13"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Strings">13</a></span>Strings</h2><div class="spec-production" id="String"><span class="spec-nt"><a href="#String" data-name="String">String</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Yellow" data-name="Yellow">Yellow</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="StringRegExp"><span class="spec-nt"><a href="#StringRegExp" data-name="StringRegExp">StringRegExp</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Red" data-name="Red">Red</a></span><span class="spec-t">)</span></div></div></section><section id="sec-Variables" secid="14"><h2><span class="spec-secid" title="link to this section"><a href="#sec-Variables">14</a></span>Variables</h2><div class="spec-production" id="Variable"><span class="spec-nt"><a href="#Variable" data-name="Variable">Variable</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="ObjectKeys"><span class="spec-nt"><a href="#ObjectKeys" data-name="ObjectKeys">ObjectKeys</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Foreground" data-name="Foreground">Foreground</a></span><span class="spec-t">)</span></div></div><div class="spec-production" id="DestructuringAliasLHS"><span class="spec-nt"><a href="#DestructuringAliasLHS" data-name="DestructuringAliasLHS">DestructuringAliasLHS</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Orange" data-name="Orange">Orange</a></span><span class="spec-t">)</span><span class="spec-nt"><span data-name="Italic">Italic</span></span></div></div><div class="spec-production" id="DestructureingAliasRHS"><span class="spec-nt"><a href="#DestructureingAliasRHS" data-name="DestructureingAliasRHS">DestructureingAliasRHS</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><span data-name="Foregroud">Foregroud</span></span><span class="spec-t">)</span></div></div><p><strong>Destructuring Example</strong></p><pre><code><span class="token keyword">const</span> x <span class="token operator">=</span> <span class="token punctuation">{</span>
+    foo<span class="token punctuation">:</span> <span class="token string">'foo'</span><span class="token punctuation">,</span>
+    bar<span class="token punctuation">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
+    baz<span class="token punctuation">:</span> <span class="token string">'baz'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// foo = Orange Italic</span>
+<span class="token comment" spellcheck="true">// myFoo = Foreground</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> myFoo <span class="token punctuation">}</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
+</code></pre><p><strong>Import/Export Example</strong></p><pre><code><span class="token keyword">export</span> <span class="token punctuation">{</span> Foo <span class="token punctuation">}</span><span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">// Foo = Foreground</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> Foo <span class="token keyword">as</span> myFoo <span class="token punctuation">}</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// Foo = Orange Italic, myFoo = Foreground</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Foo <span class="token keyword">as</span> myFoo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'foo'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Foo = Orange Italic, myFoo = Foreground</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Foo <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">// Foo = Foreground</span>
+</code></pre></section><section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AnsiBlack">AnsiBlack</a></li><li><a href="#AnsiBlue">AnsiBlue</a></li><li><a href="#AnsiBrightBlack">AnsiBrightBlack</a></li><li><a href="#AnsiBrightBlue">AnsiBrightBlue</a></li><li><a href="#AnsiBrightCyan">AnsiBrightCyan</a></li><li><a href="#AnsiBrightGreen">AnsiBrightGreen</a></li><li><a href="#AnsiBrightMagenta">AnsiBrightMagenta</a></li><li><a href="#AnsiBrightRed">AnsiBrightRed</a></li><li><a href="#AnsiBrightWhite">AnsiBrightWhite</a></li><li><a href="#AnsiBrightYellow">AnsiBrightYellow</a></li><li><a href="#AnsiCyan">AnsiCyan</a></li><li><a href="#AnsiGreen">AnsiGreen</a></li><li><a href="#AnsiMagenta">AnsiMagenta</a></li><li><a href="#AnsiRed">AnsiRed</a></li><li><a href="#AnsiWhite">AnsiWhite</a></li><li><a href="#AnsiYellow">AnsiYellow</a></li><li><a href="#Background">Background</a></li><li><a href="#BracketsParensBraces">BracketsParensBraces</a></li><li><a href="#BuiltInFunctions">BuiltInFunctions</a></li><li><a href="#BuiltInMagicMethodsOrConstants">BuiltInMagicMethodsOrConstants</a></li><li><a href="#ClassName">ClassName</a></li><li><a href="#Comment">Comment</a></li><li><a href="#Constant">Constant</a></li><li><a href="#ConstantEscapeSequences">ConstantEscapeSequences</a></li><li><a href="#CssParentSelectors">CssParentSelectors</a></li><li><a href="#Cyan">Cyan</a></li><li><a href="#DateTime">DateTime</a></li><li><a href="#Decorators">Decorators</a></li><li><a href="#Deprecated">Deprecated</a></li><li><a href="#DestructureingAliasRHS">DestructureingAliasRHS</a></li><li><a href="#DestructuringAliasLHS">DestructuringAliasLHS</a></li><li><a href="#DiffChanged">DiffChanged</a></li><li><a href="#DiffDeleted">DiffDeleted</a></li><li><a href="#DiffHeader">DiffHeader</a></li><li><a href="#DiffInserted">DiffInserted</a></li><li><a href="#DiffText">DiffText</a></li><li><a href="#DocCommentKeywords">DocCommentKeywords</a></li><li><a href="#DocCommentParameters">DocCommentParameters</a></li><li><a href="#DocCommentTypes">DocCommentTypes</a></li><li><a href="#Error">Error</a></li><li><a href="#Foreground">Foreground</a></li><li><a href="#FunctionNames">FunctionNames</a></li><li><a href="#FunctionParameters">FunctionParameters</a></li><li><a href="#GenericTemplatesAndMappedDeclarations">GenericTemplatesAndMappedDeclarations</a></li><li><a href="#Green">Green</a></li><li><a href="#HtmlCssAttributeNames">HtmlCssAttributeNames</a></li><li><a href="#HtmlTags">HtmlTags</a></li><li><a href="#InheritedClassName">InheritedClassName</a></li><li><a href="#InstanceReservedWords">InstanceReservedWords</a></li><li><a href="#Invalid">Invalid</a></li><li><a href="#Keys">Keys</a></li><li><a href="#Keyword">Keyword</a></li><li><a href="#KeywordGenericCssSelector">KeywordGenericCssSelector</a></li><li><a href="#KeywordNew">KeywordNew</a></li><li><a href="#MarkupBlockquote">MarkupBlockquote</a></li><li><a href="#MarkupBold">MarkupBold</a></li><li><a href="#MarkupCodeBlockWithoutSyntax">MarkupCodeBlockWithoutSyntax</a></li><li><a href="#MarkupHeading">MarkupHeading</a></li><li><a href="#MarkupHorizontalRule">MarkupHorizontalRule</a></li><li><a href="#MarkupInlineCode">MarkupInlineCode</a></li><li><a href="#MarkupItalic">MarkupItalic</a></li><li><a href="#MarkupLinkText">MarkupLinkText</a></li><li><a href="#MarkupLinkUrl">MarkupLinkUrl</a></li><li><a href="#MarkupListBulletOrNumber">MarkupListBulletOrNumber</a></li><li><a href="#MarkupRSTConstants">MarkupRSTConstants</a></li><li><a href="#Modifiers">Modifiers</a></li><li><a href="#ObjectKeys">ObjectKeys</a></li><li><a href="#Orange">Orange</a></li><li><a href="#Pink">Pink</a></li><li><a href="#Purple">Purple</a></li><li><a href="#Red">Red</a></li><li><a href="#ScopeOfInterest">ScopeOfInterest</a></li><li><a href="#Selection">Selection</a></li><li><a href="#SeparatorsReferencesOrAccessors">SeparatorsReferencesOrAccessors</a></li><li><a href="#Storage">Storage</a></li><li><a href="#String">String</a></li><li><a href="#StringInterpolationOperators">StringInterpolationOperators</a></li><li><a href="#StringRegExp">StringRegExp</a></li><li><a href="#Support">Support</a></li><li><a href="#Types">Types</a></li><li><a href="#Variable">Variable</a></li><li><a href="#YamlAliases">YamlAliases</a></li><li><a href="#Yellow">Yellow</a></li></ol></section><footer>Written in <a href="http://leebyron.com/spec-md/" target="_blank">Spec Markdown</a>.</footer><input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label><div class="spec-sidebar" aria-hidden><div class="spec-toc"><div class="title"><a href="#">Dracula Syntax Highlighting Specification</a></div><ol><li id="_sidebar_1"><a href="#sec-Prelude"><span class="spec-secid">1</span>Prelude</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_1" /><label for="_sidebar_toggle_1"></label><ol><li id="_sidebar_1.1"><a href="#sec-Interpreting-this-specification"><span class="spec-secid">1.1</span>Interpreting this specification</a></li><li id="_sidebar_1.2"><a href="#sec-Color-Palette"><span class="spec-secid">1.2</span>Color Palette</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_1.2" /><label for="_sidebar_toggle_1.2"></label><ol><li id="_sidebar_1.2.1"><a href="#sec-Standard"><span class="spec-secid">1.2.1</span>Standard</a></li><li id="_sidebar_1.2.2"><a href="#sec-ANSI"><span class="spec-secid">1.2.2</span>ANSI</a></li></ol></li><li id="_sidebar_1.3"><a href="#sec-Example-spec-compliant-theme-implementation"><span class="spec-secid">1.3</span>Example spec-compliant theme implementation</a></li></ol></li><li id="_sidebar_2"><a href="#sec-General"><span class="spec-secid">2</span>General</a><input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2" /><label for="_sidebar_toggle_2"></label><ol><li id="_sidebar_2.1"><a href="#sec-Diffs"><span class="spec-secid">2.1</span>Diffs</a></li><li id="_sidebar_2.2"><a href="#sec-Markup-Markdown-RST-etc-"><span class="spec-secid">2.2</span>Markup (Markdown, RST, etc.)</a></li></ol></li><li id="_sidebar_3"><a href="#sec-Classes"><span class="spec-secid">3</span>Classes</a></li><li id="_sidebar_4"><a href="#sec-Comments"><span class="spec-secid">4</span>Comments</a></li><li id="_sidebar_5"><a href="#sec-Constants"><span class="spec-secid">5</span>Constants</a></li><li id="_sidebar_6"><a href="#sec-Entities"><span class="spec-secid">6</span>Entities</a></li><li id="_sidebar_7"><a href="#sec-Functions-Methods"><span class="spec-secid">7</span>Functions/Methods</a></li><li id="_sidebar_8"><a href="#sec-Keywords"><span class="spec-secid">8</span>Keywords</a></li><li id="_sidebar_9"><a href="#sec-Language-Built-ins"><span class="spec-secid">9</span>Language Built-ins</a></li><li id="_sidebar_10"><a href="#sec-Punctuation"><span class="spec-secid">10</span>Punctuation</a></li><li id="_sidebar_11"><a href="#sec-Serializable-Configuration-Languages"><span class="spec-secid">11</span>Serializable / Configuration Languages</a></li><li id="_sidebar_12"><a href="#sec-Storage"><span class="spec-secid">12</span>Storage</a></li><li id="_sidebar_13"><a href="#sec-Strings"><span class="spec-secid">13</span>Strings</a></li><li id="_sidebar_14"><a href="#sec-Variables"><span class="spec-secid">14</span>Variables</a></li><li id="_sidebar_index"><a href="#index"><span class="spec-secid">§</span>Index</a></li></ol></div><script>(function (){
 var currentSection;
 var numberedSections = [];
 
@@ -71,4 +875,4 @@ function fold(secid, check) {
 }
 
 updateSectionFocus(window.scrollY);
-})();</script></div></body></html>
+})()</script></div></body></html>
