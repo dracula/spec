@@ -135,9 +135,23 @@ InheritedClassName: ( Cyan ) Italic
 
 Comment: ( Comment )
 
-DocCommentKeywords: ( Cyan ) Italic
+DocCommentKeywords: ( Pink )
+
+DocCommentTypes: ( Cyan ) Italic
 
 DocCommentParameters: ( Orange ) Italic
+
+**Example**
+
+```ts
+/**
+ * @param {string} foo - Some string parameter.
+// ^^^^^^ -------------------------------------- Pink
+//        ^      ^ ----------------------------- Cyan
+//         ^^^^^^ ------------------------------ Cyan Italic
+//                 ^^^ ------------------------- Orange Italic
+ */
+```
 
 # Constants
 
