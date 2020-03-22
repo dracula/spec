@@ -27,7 +27,7 @@ Red        : #FF5555
 
 Orange     : #FFB86C
 
-Yellow     : #F4F99D
+Yellow     : #F1FA8C
 
 Green      : #50FA7B
 
